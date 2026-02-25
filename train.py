@@ -1,12 +1,8 @@
-from ast import arg
 import collections
 from dataclasses import dataclass
-import stat
 import time
-from unittest.mock import DEFAULT
 
 import gymnasium as gym
-from gymnasium import wrappers
 import torch
 import dqn
 import utils
@@ -15,6 +11,9 @@ import typing as tt
 import torch.nn as nn
 import argparse
 from torch.utils.tensorboard.writer import SummaryWriter
+import ale_py
+
+gym.register_envs(ale_py)
 
 ENV_NAME = "PongNoFrameskip-v4"
 MEAN_REWARD_BOUND = 19
@@ -67,7 +66,7 @@ class Agent:
     def __init__(self, env: gym.Env, exp_buffer: ExperienceBuffer):
         self.env = env
         self.exp_buffer = exp_buffer
-        self.state = tt.Optional[np.ndarray] = None
+        self.state:  tt.Optional[np.ndarray] = None
         self._reset()
 
     def _reset(self):
@@ -160,6 +159,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     device = torch.device(args.dev)
+    print(f"Device : {device}")
 
     env = utils.make_env(args.env)
     net = dqn.DQN(env.observation_space.shape, env.action_space.n).to(device)
