@@ -31,7 +31,9 @@ Current status:
 * Training and evaluation scripts
 * Gameplay recording and export
 
-1. DQN on Atari Pong
+## Implementations 
+
+### 1. DQN on Pong
 Hyperparameters :
 ```python
     MEAN_REWARD_BOUND = 19
@@ -86,8 +88,9 @@ Gameplay :
 
 <video src="videos/rl-video-episode-0.mp4" controls width="600"></video>
 
+---
 
-All models trained and experimented on :
+## All models trained and experimented on :
 ```
 NVIDIA GeForce GTX 1650
 4GB VRAM
