@@ -7,6 +7,7 @@ requires-python = ">=3.11"
 dependencies = [
     "ale-py>=0.11.2",
     "gymnasium>=1.2.3",
+    "moviepy>=2.2.1",
     "numpy>=2.4.2",
     "opencv-python>=4.13.0.92",
     "setuptools<81",
