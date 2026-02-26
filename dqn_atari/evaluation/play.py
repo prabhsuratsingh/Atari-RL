@@ -2,28 +2,28 @@ import gymnasium as gym
 import argparse
 import numpy as np
 import typing as tt
-from sympy import true
 import torch
-import dqn
-import utils
 import collections
 import ale_py
+
+from dqn_atari.envs.atari_wrappers import make_env
+from dqn_atari.models.dqn import DQN
 
 gym.register_envs(ale_py)
 
 ENV_NAME = "PongNoFrameskip-v4"
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-m", "--model", required=True, help="Model file to load")
     parser.add_argument("-e", "--env", default=ENV_NAME, help="Name of environment")
     parser.add_argument("-r", "--record", required=True, help="Directory for video recording")
     args = parser.parse_args()
 
-    env = utils.make_env(args.env, render_mode="rgb_array")
+    env = make_env(args.env, render_mode="rgb_array")
     env = gym.wrappers.RecordVideo(env, video_folder=args.record)
-    net = dqn.DQN(env.observation_space.shape, env.action_space.n)
+    net = DQN(env.observation_space.shape, env.action_space.n)
     state = torch.load(args.model, map_location=lambda stg, _: stg)
     net.load_state_dict(state)
 
