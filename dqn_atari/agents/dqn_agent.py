@@ -48,7 +48,7 @@ class Agent:
             _, act_v = torch.max(q_vals_v, dim=1)
             action = int(act_v.item())
         
-        new_state, reward, is_done, is_trunc, _ = self.env.step(action)
+        next_state, reward, is_done, is_trunc, _ = self.env.step(action)
         self.total_reward += reward
 
         exp = Experience(
@@ -56,11 +56,11 @@ class Agent:
             action=action,
             reward=float(reward),
             done_trunc=is_done or is_trunc,
-            new_state=new_state
+            next_state=next_state
         )
 
         self.exp_buffer.append(exp)
-        self.state = new_state
+        self.state = next_state
 
         if is_done or is_trunc:
             done_reward = self.total_reward
@@ -70,22 +70,22 @@ class Agent:
         return done_reward
     
 def batch_to_tensors(batch: tt.List[Experience], device: torch.device) -> BatchTensors:
-    states, actions, rewards, dones, new_state = [], [], [], [], []
+    states, actions, rewards, dones, next_state = [], [], [], [], []
 
     for e in batch:
         states.append(e.state)
         actions.append(e.action)
         rewards.append(e.reward)
         dones.append(e.done_trunc)
-        new_state.append(e.new_state)
+        next_state.append(e.next_state)
     
     states_t = torch.as_tensor(np.asarray(states))
     actions_t = torch.LongTensor(actions)
     rewards_t = torch.FloatTensor(rewards)
     dones_t = torch.BoolTensor(dones)
-    new_states_t = torch.as_tensor(np.asarray(new_state))
+    next_states_t = torch.as_tensor(np.asarray(next_state))
 
-    return states_t.to(device), actions_t.to(device), rewards_t.to(device), dones_t.to(device), new_states_t.to(device)
+    return states_t.to(device), actions_t.to(device), rewards_t.to(device), dones_t.to(device), next_states_t.to(device)
 
 def calc_loss(
         batch: tt.List[Experience],
@@ -93,14 +93,14 @@ def calc_loss(
         target_net: DQN,
         device: torch.device
 ) -> torch.Tensor :
-    states_t, actions_t, rewards_t, dones_t, new_states_t = batch_to_tensors(batch, device)
+    states_t, actions_t, rewards_t, dones_t, next_states_t = batch_to_tensors(batch, device)
 
     state_action_values = net(states_t).gather(
         1, actions_t.unsqueeze(-1)
     ).squeeze(-1)
 
     with torch.no_grad():
-        next_state_values = target_net(new_states_t).max(1)[0]
+        next_state_values = target_net(next_states_t).max(1)[0]
         next_state_values[dones_t] = 0.0
         next_state_values = next_state_values.detach()
     

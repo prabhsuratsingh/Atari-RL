@@ -6,13 +6,7 @@ import typing as tt
 
 State = np.ndarray
 Action = int
-BatchTensors = tt.Tuple[
-    torch.ByteTensor,
-    torch.LongTensor,
-    torch.Tensor,
-    torch.BoolTensor,
-    torch.ByteTensor
-]
+
 
 @dataclass
 class Experience:
@@ -20,7 +14,7 @@ class Experience:
     action: Action
     reward: float
     done_trunc: bool
-    new_state: State
+    next_state: State
 
 class ExperienceBuffer:
     def __init__(self, capacity: int):
