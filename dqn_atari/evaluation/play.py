@@ -27,7 +27,6 @@ def main():
 
     os.makedirs(args.record, exist_ok=True)
 
-    # mark start time
     start_time = time.time()
 
     env = make_env(args.env, render_mode="rgb_array")
@@ -54,7 +53,6 @@ def main():
 
     env.close()
 
-    # only videos created in THIS run
     pattern = os.path.join(args.record, "rl-video-*.mp4")
     candidates = [f for f in glob.glob(pattern) if os.path.getmtime(f) >= start_time]
 
