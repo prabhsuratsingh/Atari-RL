@@ -155,6 +155,21 @@ Gameplay :
 
 ---
 
+### 3. Prioritized Replay Buffer DQN on Pong
+
+Convergence:
+```pwsh
+485171: done 287 games, reward 18.860, eps 0.01, speed 120.07 f/s
+Best reward updated 18.790 -> 18.860
+486855: done 288 games, reward 18.910, eps 0.01, speed 116.04 f/s
+Best reward updated 18.860 -> 18.910
+488694: done 289 games, reward 18.950, eps 0.01, speed 115.99 f/s
+Best reward updated 18.910 -> 18.950
+490377: done 290 games, reward 19.010, eps 0.01, speed 119.78 f/s
+Best reward updated 18.950 -> 19.010
+Solved in 490377 frames!
+```
+
 ## All models trained and experimented on :
 ```
 NVIDIA GeForce GTX 1650
