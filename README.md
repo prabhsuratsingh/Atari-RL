@@ -88,7 +88,7 @@ Solved in 695345 frames!
 
 Gameplay :
 
-<video src="videos/rl-video-episode-0.mp4" controls width="600"></video>
+▶️ [Watch training episode](videos/rl-video-episode-0.mp4)
 
 ---
 
@@ -151,7 +151,7 @@ Solved in 607995 frames!
 
 Gameplay :
 
-<video src="videos/pong-double-dqn.mp4" controls width="600"></video>
+▶️ [Watch training episode](videos/pong-double-dqn.mp4)
 
 ---
 
