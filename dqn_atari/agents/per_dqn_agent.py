@@ -1,5 +1,4 @@
 import torch
-import torch.nn as nn
 import numpy as np
 
 from dqn_atari.models.dqn import DQN
@@ -13,7 +12,7 @@ def batch_to_tensors(batch, device):
         actions.append(e.action)
         rewards.append(e.reward)
         dones.append(e.done_trunc)
-        next_states.append(e.new_state)
+        next_states.append(e.next_state)
 
     states = torch.as_tensor(np.asarray(states)).to(device)
     actions = torch.LongTensor(actions).to(device)

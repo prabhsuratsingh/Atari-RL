@@ -1,6 +1,4 @@
 import numpy as np
-import collections
-import typing as tt
 
 from dqn_atari.replay.buffer import Experience
 

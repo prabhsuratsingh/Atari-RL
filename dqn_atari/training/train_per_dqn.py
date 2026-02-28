@@ -44,7 +44,7 @@ def main():
     net = DQN(env.observation_space.shape, env.action_space.n).to(device)
     target_net = DQN(env.observation_space.shape, env.action_space.n).to(device)
 
-    writer = SummaryWriter(comment="-" + args.env)
+    writer = SummaryWriter(comment="-" + args.env + "-per_dqn")
     print(net)
 
     buffer = PrioritizedReplayBuffer(REPLAY_SIZE)
@@ -78,7 +78,7 @@ def main():
             writer.add_scalar("reward", reward, frame_idx)
 
             if best_m_reward is None or best_m_reward < m_reward:
-                torch.save(net.state_dict(), args.env + "-best_%.0f.dat" % m_reward)
+                torch.save(net.state_dict(), f"checkpoints/{args.env}-per_dqn-best_{m_reward:.0f}.dat")
                 if best_m_reward is not None:
                     print(f"Best reward updated {best_m_reward:.3f} -> {m_reward:.3f}")
                 best_m_reward = m_reward
