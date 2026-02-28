@@ -165,11 +165,11 @@ CUDA Version: 12.5
 ## Roadmap
 
 
-* [*] Vanilla DQN
-* [*] n-Step DQN
-* [*] Double DQN
-* [*] Noisy Networks
-* [*] Prioritized replay buffer
+* [x] Vanilla DQN
+* [x] n-Step DQN
+* [x] Double DQN
+* [x] Noisy Networks
+* [x] Prioritized replay buffer
 * [ ] Dueling DQN
 * [ ] Categorized DQN
 * [ ] Multi-game training
