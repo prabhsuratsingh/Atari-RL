@@ -185,8 +185,8 @@ CUDA Version: 12.5
 * [x] Double DQN
 * [x] Noisy Networks
 * [x] Prioritized replay buffer
-* [ ] Dueling DQN
-* [ ] Categorized DQN
+* [x] Dueling DQN
+* [x] Categorized DQN
 * [ ] Multi-game training
 
 ## References
