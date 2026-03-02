@@ -187,7 +187,7 @@ CUDA Version: 12.5
 * [x] Prioritized replay buffer
 * [x] Dueling DQN
 * [x] Categorized DQN (C51)
-* [ ] Rainbow (Dueling + Noisy + C51)
+* [x] Rainbow (Dueling + Noisy + C51)
 
 ## References
 
