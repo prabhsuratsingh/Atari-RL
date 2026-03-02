@@ -186,8 +186,8 @@ CUDA Version: 12.5
 * [x] Noisy Networks
 * [x] Prioritized replay buffer
 * [x] Dueling DQN
-* [x] Categorized DQN
-* [ ] Multi-game training
+* [x] Categorized DQN (C51)
+* [ ] Rainbow (Dueling + Noisy + C51)
 
 ## References
 
